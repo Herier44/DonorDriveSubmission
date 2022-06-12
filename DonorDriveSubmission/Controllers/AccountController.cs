@@ -31,7 +31,7 @@ namespace DonorDriveSubmission.Controllers
                 Port = 587,
                 EnableSsl = true,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential("herier44@gmail.com", "password")//remember to not push my password, put your credentials in to test
+                Credentials = new NetworkCredential("herier44@gmail.com", "")//remember to not push my password, put your credentials in to test
             };
 
             return smtp;

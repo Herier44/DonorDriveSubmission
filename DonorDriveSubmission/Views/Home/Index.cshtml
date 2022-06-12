@@ -14,8 +14,8 @@
                 <div class="row">
                     <div class="col">
                         <label for="">First Name:</label><br>
-                        @Html.EditorFor(m => m.FirstName)<br>
-                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                        @Html.EditorFor(m => m.FirstName)@*<br>*@
+                        @*@Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })*@
                     </div>
                     <div class="col">
                         <label>Last Name:</label><br>
@@ -24,12 +24,11 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <label></label>Email:<br>
-                        <input type="text">
-                        @Html.HiddenFor(m => m.Email)
+                        <label>Email:</label><br>
+                        @Html.TextBoxFor(m => m.Email)
                     </div>
                     <div class="col">
-                        <label>UserName:</label><br>
+                        <label>User Name:</label><br>
                         @Html.TextBoxFor(m => m.UserName)
                     </div>
                 </div>
