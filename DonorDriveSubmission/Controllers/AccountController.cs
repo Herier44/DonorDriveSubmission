@@ -2,6 +2,8 @@
 using DonorDriveSubmission.Models;
 //using FluentEmail.Core;
 using Microsoft.AspNetCore.Mvc;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,26 +17,17 @@ namespace DonorDriveSubmission.Controllers
     {
         public async Task AddUsersNameAsync(User user)
         {
-            var smtp = GetSmtpClient();
+            var smtp = GetSendGridClient();
 
             var email = BuildEmail(user);
 
-            sendEmail(user, smtp, email);
+            await sendEmailAsync(user, smtp, email);
         }
 
-        public SmtpClient GetSmtpClient()
+        public SendGridClient GetSendGridClient()
         {
-            var smtp = new SmtpClient
-            {
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                Host = "smtp.sendgrid.net",
-                Port = 587,
-                EnableSsl = true,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential("apikey", "")//remember to not push my password, put your credentials in to test
-            };
-
-            return smtp;
+            var client = new SendGridClient("");//todo setup a way so the api key is not visable
+            return client;
         }
 
 
@@ -42,8 +35,8 @@ namespace DonorDriveSubmission.Controllers
         {
             var email = new Email
             {
-                SendTo = user.Email,
-                SendFrom = "herier44@gmail.com",
+                SendTo = new EmailAddress(user.Email, user.UserName),
+                SendFrom = new EmailAddress("herier44@gmail.com", "sender"),
                 Body = "This is a test body.",
                 Subject = "This is a test email."
             };
@@ -51,9 +44,11 @@ namespace DonorDriveSubmission.Controllers
             return email;
         }
 
-        public IActionResult sendEmail(User user, SmtpClient smtp, Email email)
+        public async Task<IActionResult> sendEmailAsync(User user, SendGridClient smtp, Email email)
         {
-            smtp.Send(email.SendFrom, email.SendTo, email.Subject, email.Body);
+            var message = MailHelper.CreateSingleEmail(email.SendFrom, email.SendTo, email.Subject, email.Body, "");
+
+            var response = await smtp.SendEmailAsync(message);
 
             return View("~/Views/Home/EmailSent.cshtml", user);
         }
