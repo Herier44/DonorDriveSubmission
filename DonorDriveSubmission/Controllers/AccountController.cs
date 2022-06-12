@@ -17,7 +17,11 @@ namespace DonorDriveSubmission.Controllers
             {
                 return View("~/Views/Home/Index.cshtml");
             }
-            
+
+            //remove whitespace from email
+            var tempUserEmail = user.Email.Trim();
+            user.Email = tempUserEmail;
+
             var smtp = GetSendGridClient();
             var email = BuildEmail(user);
             await sendEmailAsync(user, smtp, email);
