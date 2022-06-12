@@ -27,11 +27,11 @@ namespace DonorDriveSubmission.Controllers
             var smtp = new SmtpClient
             {
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                Host = "smtp.gmail.com",
+                Host = "smtp.sendgrid.net",
                 Port = 587,
                 EnableSsl = true,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential("herier44@gmail.com", "")//remember to not push my password, put your credentials in to test
+                Credentials = new NetworkCredential("apikey", "")//remember to not push my password, put your credentials in to test
             };
 
             return smtp;
