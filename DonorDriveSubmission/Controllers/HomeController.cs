@@ -19,9 +19,9 @@ namespace DonorDriveSubmission.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index(User user)
+        public IActionResult Index()
         {
-            return View(user);
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
