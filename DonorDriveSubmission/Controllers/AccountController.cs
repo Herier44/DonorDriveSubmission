@@ -11,6 +11,10 @@ namespace DonorDriveSubmission.Controllers
     {
         public async Task<IActionResult> AddUsersName(User user)
         {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
             return View("~/Views/Home/EmailSent.cshtml", user);
         }
     }

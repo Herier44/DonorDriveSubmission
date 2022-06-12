@@ -1,4 +1,5 @@
-﻿using DonorDriveSubmission.Models;
+﻿using Culture_Shock.Models;
+using DonorDriveSubmission.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -18,9 +19,9 @@ namespace DonorDriveSubmission.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(User user)
         {
-            return View();
+            return View(user);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
