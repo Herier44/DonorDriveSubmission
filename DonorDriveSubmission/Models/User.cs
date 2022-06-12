@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Web;
 using System.Threading.Tasks;
 
 namespace Culture_Shock.Models
@@ -11,6 +12,7 @@ namespace Culture_Shock.Models
         [Required]
         public string UserName { get; set; }
         [Required]
+        [EmailAddress(ErrorMessage = "Email address is invalid.")]
         public string Email { get; set; }
         [Required]
         public string FirstName { get; set; }

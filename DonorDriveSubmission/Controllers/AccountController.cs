@@ -1,6 +1,7 @@
 ﻿using Culture_Shock.Models;
 using DonorDriveSubmission.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using System.Threading.Tasks;
@@ -9,13 +10,20 @@ namespace DonorDriveSubmission.Controllers
 {
     public class AccountController : Controller
     {
-        public async Task AddUsersNameAsync(User user)
+        public async Task<IActionResult> AddUsersNameAsync(User user)
         {
+
+            if (string.IsNullOrEmpty(user.UserName) || string.IsNullOrEmpty(user.FirstName) || 
+                string.IsNullOrEmpty(user.LastName) || string.IsNullOrEmpty(user.Email))
+            {
+                return View("~/Views/Home/Index.cshtml");
+            }
+            
             var smtp = GetSendGridClient();
-
             var email = BuildEmail(user);
-
             await sendEmailAsync(user, smtp, email);
+
+            return View("~/Views/Home/EmailSent.cshtml", user);
         }
 
         public SendGridClient GetSendGridClient()
@@ -45,13 +53,12 @@ namespace DonorDriveSubmission.Controllers
             return email;
         }
 
-        public async Task<IActionResult> sendEmailAsync(User user, SendGridClient smtp, Email email)
+        public async Task sendEmailAsync(User user, SendGridClient smtp, Email email)
         {
             var message = MailHelper.CreateSingleEmail(email.SendFrom, email.SendTo, email.Subject, email.Body, email.HTML);
 
             var response = await smtp.SendEmailAsync(message);
 
-            return View("~/Views/Home/EmailSent.cshtml", user);
         }
 
     }
