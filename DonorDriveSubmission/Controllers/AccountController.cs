@@ -26,7 +26,9 @@ namespace DonorDriveSubmission.Controllers
 
         public SendGridClient GetSendGridClient()
         {
-            var client = new SendGridClient("");//todo setup a way so the api key is not visable
+            var apiKey = "";//Environment.GetEnvironmentVariable("TestEmailAPI");
+            //I know this can be set up with environment variables as the commented code shows above but for this project pasting it in seemed easier.
+            var client = new SendGridClient(apiKey);
             return client;
         }
 
@@ -36,9 +38,14 @@ namespace DonorDriveSubmission.Controllers
             var email = new Email
             {
                 SendTo = new EmailAddress(user.Email, user.UserName),
-                SendFrom = new EmailAddress("herier44@gmail.com", "sender"),
-                Body = "This is a test body.",
-                Subject = "This is a test email."
+                SendFrom = new EmailAddress("herier44@gmail.com", "David Herier"),
+                Body = $"The information used to sign up for {user.FirstName} {user.LastName}'s account was: " +
+                $"Email: {user.Email}" +
+                $" User name: {user.UserName}",
+                Subject = $"Thanks for singing up {user.FirstName}.",
+                HTML = $"The information used to sign up for {user.FirstName} {user.LastName}'s account was: <br />" +
+                $"Email: {user.Email} <br />" +
+                $"User name: {user.UserName}
             };
 
             return email;
@@ -46,7 +53,7 @@ namespace DonorDriveSubmission.Controllers
 
         public async Task<IActionResult> sendEmailAsync(User user, SendGridClient smtp, Email email)
         {
-            var message = MailHelper.CreateSingleEmail(email.SendFrom, email.SendTo, email.Subject, email.Body, "");
+            var message = MailHelper.CreateSingleEmail(email.SendFrom, email.SendTo, email.Subject, email.Body, email.HTML);
 
             var response = await smtp.SendEmailAsync(message);
 
