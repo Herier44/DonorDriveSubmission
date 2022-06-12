@@ -11,7 +11,7 @@ namespace DonorDriveSubmission.Controllers
     {
         public async Task<IActionResult> AddUsersNameAsync(User user)
         {
-
+            //This checks if everything is there
             if (string.IsNullOrEmpty(user.UserName) || string.IsNullOrEmpty(user.FirstName) || 
                 string.IsNullOrEmpty(user.LastName) || string.IsNullOrEmpty(user.Email))
             {
