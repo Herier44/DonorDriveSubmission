@@ -31,7 +31,7 @@ namespace DonorDriveSubmission.Controllers
 
         public SendGridClient GetSendGridClient()
         {
-            var apiKey = "";//Environment.GetEnvironmentVariable("TestEmailAPI");
+            var apiKey = "";//Environment.GetEnvironmentVariable("EmailAPI");
             //I know this can be set up with environment variables as the commented code shows above
             //but for this project pasting it in seemed easier.
             var client = new SendGridClient(apiKey);
