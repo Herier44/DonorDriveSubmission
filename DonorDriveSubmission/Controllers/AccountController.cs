@@ -1,14 +1,8 @@
 ﻿using Culture_Shock.Models;
 using DonorDriveSubmission.Models;
-//using FluentEmail.Core;
 using Microsoft.AspNetCore.Mvc;
 using SendGrid;
 using SendGrid.Helpers.Mail;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace DonorDriveSubmission.Controllers
@@ -45,7 +39,7 @@ namespace DonorDriveSubmission.Controllers
                 Subject = $"Thanks for singing up {user.FirstName}.",
                 HTML = $"The information used to sign up for {user.FirstName} {user.LastName}'s account was: <br />" +
                 $"Email: {user.Email} <br />" +
-                $"User name: {user.UserName}
+                $"User name: {user.UserName}"
             };
 
             return email;
