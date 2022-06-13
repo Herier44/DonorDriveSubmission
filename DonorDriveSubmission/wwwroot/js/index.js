@@ -9,6 +9,6 @@ function lettersAndNumsOnly(input) {
 }
 
 function notSpace(input) {
-    var regex = /[^\s]/gi;
+    var regex = /[\s]/gi;
     input.value = input.value.replace(regex, "");
 }
