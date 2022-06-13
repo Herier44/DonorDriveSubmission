@@ -1,16 +1,9 @@
-﻿var indexModule = (function () {
+﻿function lettersOnly(input) {
+    var regex = /[^a-z]/gi;
+    input.value = input.value.replace(regex, "");
+}
 
-    var _firstName = document.querySelector("#first-name");
-
-    function _init() {
-
-    }
-
-    function lettersOnly() {
-
-    }
-
-    return {
-        init: _init
-    };
-}());
+function lettersAndNumsOnly(input) {
+    var regex = /[^a-zA-Z0-9_.-]/gi;
+    input.value = input.value.replace(regex, "");
+}

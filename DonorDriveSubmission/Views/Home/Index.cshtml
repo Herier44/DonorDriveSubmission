@@ -14,12 +14,12 @@
                 <div class="row">
                     <div class="col">
                         <label for="">First Name:</label><br>
-                        @Html.TextBoxFor(m => m.FirstName, new { @id = "first-name", @onkeyup = "lettersonly(this)" })<br />
+                        @Html.TextBoxFor(m => m.FirstName, new { @onkeyup = "lettersOnly(this)" })<br />
                         @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
                     </div>
                     <div class="col">
                         <label>Last Name:</label><br>
-                        @Html.TextBoxFor(m => m.LastName)<br />
+                        @Html.TextBoxFor(m => m.LastName, new { @onkeyup = "lettersOnly(this)" })<br />
                         @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     </div>
                     <div class="col">
                         <label>User Name:</label><br>
-                        @Html.TextBoxFor(m => m.UserName)<br />
+                        @Html.TextBoxFor(m => m.UserName, new { @onkeyup = "lettersAndNumsOnly(this)" })<br />
                         @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                     </div>
                 </div>
