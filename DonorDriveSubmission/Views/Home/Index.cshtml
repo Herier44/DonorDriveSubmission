@@ -14,24 +14,24 @@
                 <div class="row">
                     <div class="col">
                         <label for="">First Name:</label><br>
-                        @Html.TextBoxFor(m => m.FirstName, new { @onkeyup = "lettersOnly(this)", maxlength = "30" })<br />
+                        @Html.TextBoxFor(m => m.FirstName, new { @onkeyup = "lettersOnly(this)", maxlength = "30", placeholder = "First Name" })<br />
                         @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
                     </div>
                     <div class="col">
                         <label>Last Name:</label><br>
-                        @Html.TextBoxFor(m => m.LastName, new { @onkeyup = "lettersOnly(this)", maxlength = "30" })<br />
+                        @Html.TextBoxFor(m => m.LastName, new { @onkeyup = "lettersOnly(this)", maxlength = "30", placeholder = "Last Name" })<br />
                         @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <label>Email:</label><br>
-                        @Html.TextBoxFor(m => m.Email, new { @onkeyup = "notSpace(this)", maxlength = "30" })<br />
+                        @Html.TextBoxFor(m => m.Email, new { @onkeyup = "notSpace(this)", maxlength = "30", placeholder = "Email" })<br />
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
                     <div class="col">
                         <label>User Name:</label><br>
-                        @Html.TextBoxFor(m => m.UserName, new { @onkeyup = "lettersAndNumsOnly(this)", maxlength = "30" })<br />
+                        @Html.TextBoxFor(m => m.UserName, new { @onkeyup = "lettersAndNumsOnly(this)", maxlength = "30", placeholder = "User Name" })<br />
                         @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                     </div>
                 </div>
