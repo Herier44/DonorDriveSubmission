@@ -1,22 +1,22 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Culture_Shock.Models
+namespace DonorDriveSubmission.Models
 {
     public class User
     {
+        //Username
         [Required]
-        [RegularExpression(@"^\S*$", ErrorMessage = "No white space allowed")]
         public string UserName { get; set; }
+        //email
         [Required]
-        [RegularExpression(@"^\S*$", ErrorMessage = "No white space allowed")]
         [EmailAddress(ErrorMessage = "Email address is invalid.")]
         public string Email { get; set; }
+        //First Name
         [Required]
-        [RegularExpression(@"^\S*$", ErrorMessage = "No white space allowed")]
         public string FirstName { get; set; }
+        //Last Name
         [Required]
-        [RegularExpression(@"^\S*$", ErrorMessage = "No white space allowed")]
         public string LastName { get; set; }
 
     }

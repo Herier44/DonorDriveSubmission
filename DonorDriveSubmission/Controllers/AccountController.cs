@@ -1,5 +1,4 @@
-﻿using Culture_Shock.Models;
-using DonorDriveSubmission.Models;
+﻿using DonorDriveSubmission.Models;
 using Microsoft.AspNetCore.Mvc;
 using SendGrid;
 using SendGrid.Helpers.Mail;
@@ -14,6 +13,10 @@ namespace DonorDriveSubmission.Controllers
             //This checks if everything is there
             if (string.IsNullOrEmpty(user.UserName) || string.IsNullOrEmpty(user.FirstName) || 
                 string.IsNullOrEmpty(user.LastName) || string.IsNullOrEmpty(user.Email))
+            {
+                return View("~/Views/Home/Index.cshtml");
+            }
+            else if (!ModelState.IsValid)
             {
                 return View("~/Views/Home/Index.cshtml");
             }
@@ -63,7 +66,6 @@ namespace DonorDriveSubmission.Controllers
             var message = MailHelper.CreateSingleEmail(email.SendFrom, email.SendTo, email.Subject, email.Body, email.HTML);
 
             var response = await smtp.SendEmailAsync(message);
-
         }
 
     }
