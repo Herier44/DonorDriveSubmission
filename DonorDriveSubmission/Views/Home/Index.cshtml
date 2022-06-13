@@ -6,7 +6,7 @@
 <div class="text-center">
     <h1 class="display-4">Donor Drive Submission</h1>
 
-    <div class="card col">
+    <div class="card col bg-light">
         @using (Html.BeginForm("AddUsersName", "Account", FormMethod.Post))
         {
             @Html.ValidationSummary(true, "", new { @class = "text-danger" });

@@ -1,4 +1,4 @@
-﻿@model             User
+﻿@model User
 
 @{
     ViewData["Title"] = "Confirmed page";
@@ -7,30 +7,32 @@
 <div class="text-center">
     <h1 class="display-4">Donor Drive Submission</h1>
     <h4>An Email Has Been Sent With The Information Below</h4>
-    <div class="card-body form-group">
-        <div class="row">
-            <div class="col">
-                <label for="">First Name:</label><br>
-                @Html.TextBoxFor(m => m.FirstName, new { disabled = "disabled", Value = Model.FirstName })<br />
+    <div class="card col bg-light">
+        <div class="card-body form-group">
+            <div class="row">
+                <div class="col">
+                    <label for="">First Name:</label><br>
+                    @Html.TextBoxFor(m => m.FirstName, new { disabled = "disabled", Value = Model.FirstName })<br />
+                </div>
+                <div class="col">
+                    <label>Last Name:</label><br>
+                    @Html.TextBoxFor(m => m.LastName, new { disabled = "disabled", Value = Model.LastName })<br />
+                </div>
             </div>
-            <div class="col">
-                <label>Last Name:</label><br>
-                @Html.TextBoxFor(m => m.LastName, new { disabled = "disabled", Value = Model.LastName })<br />
+            <div class="row">
+                <div class="col">
+                    <label>Email:</label><br>
+                    @Html.TextBoxFor(m => m.Email, new { disabled = "disabled", Value = Model.Email })<br />
+                </div>
+                <div class="col">
+                    <label>User Name:</label><br>
+                    @Html.TextBoxFor(m => m.UserName, new { disabled = "disabled", Value = Model.UserName })<br />
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label>Email:</label><br>
-                @Html.TextBoxFor(m => m.Email, new { disabled = "disabled", Value = Model.Email })<br />
-            </div>
-            <div class="col">
-                <label>User Name:</label><br>
-                @Html.TextBoxFor(m => m.UserName, new { disabled = "disabled", Value = Model.UserName })<br />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <input type="button" value="Go Home" class="mt-2" onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");" />
+            <div class="row">
+                <div class="col">
+                    <input type="button" value="Go Home" class="mt-2" onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");" />
+                </div>
             </div>
         </div>
     </div>
